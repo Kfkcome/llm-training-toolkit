@@ -1,7 +1,29 @@
-# Placeholder for StarCoder finetune.py
+"""StarCoder fine-tuning script (bootstrap)
 
-This file is a placeholder for the finetune.py file from the bigcode-project/starcoder repository.
+This toolkit repo is for learning. In this environment we can't automatically vendor upstream files.
 
-The original file could not be automatically retrieved.
+Upstream source (recommended to study directly):
+https://github.com/bigcode-project/starcoder/blob/main/finetune/finetune.py
 
-You can download the actual file from the StarCoder repository and replace this file.
+Run this file to download the upstream script into this repo for local study:
+    python finetune.py
+
+This will write: finetune_upstream.py
+"""
+
+from __future__ import annotations
+
+import pathlib
+import urllib.request
+
+
+def download_upstream(dst: pathlib.Path | str = "finetune_upstream.py") -> pathlib.Path:
+    url = "https://raw.githubusercontent.com/bigcode-project/starcoder/main/finetune/finetune.py"
+    dst = pathlib.Path(dst)
+    urllib.request.urlretrieve(url, dst)
+    return dst
+
+
+if __name__ == "__main__":
+    path = download_upstream()
+    print(f"Downloaded upstream script to: {path.resolve()}")
